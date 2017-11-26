@@ -56,8 +56,6 @@ describe('POST /todos', () => {
 
 describe('GET /todos', () => {
     it('should create a new todo', (done) => {
-      var text = 'Test todo text';
-  
       request(app)
         .get('/todos')
         .expect(200)

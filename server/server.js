@@ -3,7 +3,7 @@ var BodyParser = require("body-parser");
 
 var {mongoose} = require("./db/mongoose");
 var {Todo} = require("./models/todo");
-var {User} = require("./models/user");
+// var {User} = require("./models/user");
 
 var app = express();
 app.use(BodyParser.json());
