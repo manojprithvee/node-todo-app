@@ -10,7 +10,7 @@ var app = express();
 app.use(BodyParser.json());
 app.post("/todos",(req,res)=>{
     new Todo({text:req.body.text}).save().then((doc)=>{
-        res.send({doc,errorMessage:null})
+        res.send(doc)
     },(err)=>{
         res.status(400).send(err)
     })
@@ -28,7 +28,7 @@ app.get("/todos/:id",(req,res)=>{
     var id=req.params.id;
     if (!ObjectID.isValid(id))
     {
-        return res.status(400).send({errorMessage:"ID is not Vaild"})
+        return res.status(404).send({errorMessage:"ID is not Vaild"})
     }
     Todo.findById(id).then((todo)=>{
         if (!todo){
@@ -40,8 +40,8 @@ app.get("/todos/:id",(req,res)=>{
     })
 
 });
-app.listen(3000,()=>{
-    console.log("Server running on port 3000")
+app.listen(process.env.PORT||3000,()=>{
+    console.log(`Server running on port ${process.env.PORT||3000}`,)
 });
 
 module.exports={
